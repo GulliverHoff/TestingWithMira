@@ -2,27 +2,28 @@
 
 namespace GoEng{
 
-struct Point;
-struct Chain;
-struct BoardState;
-
-enum Color;
+    struct Point;
+    struct Chain;
+    struct BoardState;
 
 
-enum Color {
-  Black = 0,
-  White = 1
-};
+    enum Color {
+        Black = 0,
+        White = 1
+    };
 
-struct Point {
-  unsigned int row;
-  unsigned int col;
-};
+    struct Point {
+        unsigned int row;
+        unsigned int col;
+    };
 
-using PointSet = std::unordered_set<Point>;
+    using PointSet = std::unordered_set<Point>;
 
-struct Chain {
-
-};
+    struct Chain {
+        Color color;
+        PointSet stones;
+    };
 
 }
+
+

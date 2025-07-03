@@ -1,10 +1,13 @@
 #include <unordered_set>
 #include <vector>
 #include <cstdint>
+#include <cstddef>
 
-namespace GoEng{
+namespace GoEng {
 
     struct Point;
+    struct PointHasher;
+    
     struct Chain;
     struct BoardState;
 
@@ -14,16 +17,14 @@ namespace GoEng{
         White = 1
     };
 
-    struct Point {
-        uint32_t row;
-        uint32_t col;
 
-        bool operator==(const Point& other) const {
-            return row == other.row && col == other.col;
-        }
+    struct Point {
+        uint32_t x, y;
+        Point(int x, int y);
+        bool operator==(const Point& other) const;
     };
 
-    using PointSet = std::unordered_set<Point>;
+    using PointSet = std::unordered_set<Point, PointHasher>;
 
     struct Chain {
         
@@ -32,10 +33,11 @@ namespace GoEng{
     struct BoardState {
     public:
         BoardState(uint32_t width, uint32_t height);
+        std::vector<Color> operator[](size_t row);
     private:
         std::vector<std::vector<Color>> data;
-        uint32_t width;
-        uint32_t height;
+        size_t width;
+        size_t height;
     };
         
 

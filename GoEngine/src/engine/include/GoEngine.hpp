@@ -1,4 +1,6 @@
 #include <unordered_set>
+#include <vector>
+#include <cstdint>
 
 namespace GoEng{
 
@@ -6,24 +8,36 @@ namespace GoEng{
     struct Chain;
     struct BoardState;
 
-
     enum Color {
+        None = -1,
         Black = 0,
         White = 1
     };
 
     struct Point {
-        unsigned int row;
-        unsigned int col;
+        uint32_t row;
+        uint32_t col;
+
+
+        bool operator==(const Point& other) const {
+            return row == other.row && col == other.col;
+        }
     };
 
     using PointSet = std::unordered_set<Point>;
 
     struct Chain {
-        Color color;
-        PointSet stones;
+        
     };
 
+    struct BoardState {
+        public:
+            BoardState(uint32_t width, uint32_t height);
+        private:
+            std::vector<std::vector<Color>> data;
+            uint32_t width;
+            uint32_t height;
+    };
+        
 }
-
 

@@ -27,7 +27,9 @@ namespace GoEng{
     using PointSet = std::unordered_set<Point>;
 
     struct Chain {
-        
+        Color color;
+        uint32_t liberties;
+        PointSet stones;
     };
 
     struct BoardState {

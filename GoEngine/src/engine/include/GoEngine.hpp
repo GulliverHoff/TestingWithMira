@@ -7,7 +7,6 @@ namespace GoEng {
 
     struct Point;
     struct PointHasher;
-    
     struct Chain;
     struct BoardState;
 
@@ -22,6 +21,10 @@ namespace GoEng {
         uint32_t x, y;
         Point(int x, int y);
         bool operator==(const Point& other) const;
+    };
+
+    struct PointHasher {
+        size_t operator()(const Point& point) const;
     };
 
     using PointSet = std::unordered_set<Point, PointHasher>;
